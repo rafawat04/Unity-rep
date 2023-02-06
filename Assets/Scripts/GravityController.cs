@@ -18,10 +18,12 @@ public class GravityController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        // Vector3 is about x,y,z (0,0,0) is the start value
         Vector3 vector = new Vector3();
 
         //キーの入力を検知しベクトルを設定
+        //GetAxisは-1~1の値を返す
         vector.x = Input.GetAxis("Horizontal");
         vector.z = Input.GetAxis("Vertical");
 
@@ -34,6 +36,6 @@ public class GravityController : MonoBehaviour
 
         //シーンの重力を入力ベクトルの方向に合わせて変化させる
         Physics.gravity = Gravity * vector.normalized * gravityScale;
-
+        //normalizedは長さを1にする(方向キーを同時に押して重力が強くなることを防止する)
     }
 }
